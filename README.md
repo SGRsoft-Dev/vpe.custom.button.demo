@@ -7,7 +7,7 @@
 
 
 ## 소스코드
-[https://github.com/SGRsoft-Dev/mediaplus.demo.vpe.basic](https://github.com/SGRsoft-Dev/mediaplus.demo.vpe.basic)
+[https://github.com/SGRsoft-Dev/vpe.custom.button.demo](https://github.com/SGRsoft-Dev/vpe.custom.button.demo)
 
 
 *** 
@@ -35,6 +35,9 @@ https://guide.ncloud-docs.com/docs/vpe-example-source
 
 ### VPE Web 설정 가이드
 https://guide.ncloud-docs.com/docs/vpe-web
+
+### VPE 커스텀 버튼 가이드
+https://guide.ncloud-docs.com/docs/vpe-example-ui#%EC%BB%A4%EC%8A%A4%ED%85%80-%EB%B2%84%ED%8A%BC-%EC%B6%94%EA%B0%80
 
 ***
 
@@ -72,7 +75,57 @@ $ npm run dev
 ```
 
 
+
+## 커스텀 버튼 설정
+
+![](https://nnbkegvqsbcu5297614.cdn.ntruss.com/profile/202308/abbff549e834c3e0ce2b373f29b50d4a.png)
+
+```
+//동영상(MP4)
+let player = new ncplayer('video1', {
+  playlist: [
+    {
+      file: 'https://https://CDN도메인/example_video_01.mp4',
+    },
+  ],
+  customBtns: [
+          {
+              ui: "pc", //설치할 UI
+              id: "chatBtn", //버튼의 DOM ID
+              position: "right-bottom", //버튼 포지션
+              flow: "left", //버튼 생성위치
+              icon: "https://CDN도메인/example_video_01.svg", //버튼이미지
+              callback(){ //클릭 이벤트
+                alert('버튼클릭')
+              }
+
+          },
+          {
+              ui: "mobile", //설치할 UI
+              id: "chatBtn", //버튼의 DOM ID
+              position: "right-bottom", //버튼 포지션
+              flow: "left", //버튼 생성위치
+              icon: "https://CDN도메인/example_video_02.svg",  //버튼이미지
+              callback(){ //클릭 이벤트
+                alert("버튼클릭")
+              }
+            }
+  ]
+});
+
+//ready 이벤트를 이용하여 커스텀 버튼에 이벤트 바인딩
+player.on('ready',()=>{
+  documnet.getElementById('chatBtn').addEventListener('click',()=>{
+      alert('버튼클릭')
+  });
+})
+```
+
+
+
 ***
+
+
 
 
 ## 문의하기
